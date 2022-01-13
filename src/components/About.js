@@ -1,31 +1,37 @@
 import React, { useState } from 'react'
 
-export default function About() {
-    const [myStyle, setMyStyle] = useState({
-        color: "white",
-        backgroundColor: "grey" 
-    });
+export default function About(props) {
+    // const [myStyle, setMyStyle] = useState({
+    //     color: "black",
+    //     backgroundColor: "white" 
+    // });
 
-    const [btnText, setBtnText] = useState('Enable Light Mode')
+    // const [btnText, setBtnText] = useState('Enable Dark Mode')
 
-    const toggleStyle = () => {
-       if(myStyle.color === 'white'){
-        setMyStyle({
-            color: "unset",
-            backgroundColor: "unset" 
-           });
-           setBtnText("Enable Dark Mode");
-        }else{
-            setMyStyle({
-                color: "white",
-                backgroundColor: "grey" 
-            });
-            setBtnText("Enable Light Mode");
-       }
+    // const toggleStyle = () => {
+    //    if(myStyle.backgroundColor === 'white'){
+    //     setMyStyle({
+    //         color: "white",
+    //         backgroundColor: "grey" 
+    //        });
+    //        setBtnText("Enable Light Mode");
+    //     }else{
+    //         setMyStyle({
+    //             color: "black",
+    //             backgroundColor: "white"
+    //         });
+    //         setBtnText("Enable Dark Mode");
+    //    }
+    // }
+
+
+    let myStyle = {
+        color: props.mode === 'dark' ? 'white': 'grey',
+        backgroundColor: props.mode === 'dark' ? 'grey': 'white'
     }
 
     return (
-        <div className='container my-5' style={myStyle}>
+        <div className='container my-5 p-2' style={myStyle}>
             <h2 className='my-3'>About Us</h2>
             <div className="accordion" id="accordionExample">
                 <div className="accordion-item">
@@ -65,9 +71,9 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <div className="container my-4">
+            {/* <div className="container my-4">
                 <button onClick={toggleStyle} className='btn btn-primary'>{btnText}</button>
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -14,6 +14,25 @@ export default function TextForm(props) {
         setText(text.toLowerCase())
         props.showAlert("Coverted to lowercase", 'success');
     }
+
+    const handleCopy = ()=>{
+        let textBox = document.getElementById('myBox')
+        navigator.clipboard.writeText(text.value);
+        props.showAlert("Text has been successfully copied.", 'success');
+    }
+
+    const handleExtraSpaces = () =>{
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+        props.showAlert("Extra Spaces removed successfully", 'success');
+
+    }
+
+    const handleClearText = () => {
+        setText("");
+        props.showAlert("Text successfully Removed", 'success');
+    }
+
     const handlOnChange = (e) =>{
         // console.log("On change");
         setText(e.target.value)
@@ -32,17 +51,21 @@ export default function TextForm(props) {
             <div className="mb-3">
                 <textarea className="form-control" onChange={handlOnChange} id="myBox" rows="5" value={text}></textarea>
             </div>
-            <button className="btn btn-primary mx-1" onClick={handleUpClick}>Text to uppercase</button>
-            <button className="btn btn-primary mx-1" onClick={handleLowClick}>Text to lower</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleUpClick}>Text to uppercase</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleLowClick}>Text to lower</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleClearText}>Clear Text</button>
             <input type="color" className="form-control-color" onChange={handleChangeColor} />
+            
 
         </div>
         <div className="container my-2">
             <h3 style={{color: "red"}}>Your text summary</h3>
-            <p>{text.split(' ').length} words, {text.length} characters</p>
-            <p>{0.008 * text.split(" ").length} Minutes read.</p>
+            <p>{text.split(/\s+/).filter((element) => {return element.length !== 0}).length} words, {text.length} characters</p>
+            <p>{0.008 * text.split(" ").filter((element) => {return element.length !== 0}).length} Minutes read.</p>
             <h4>Preview</h4>
-            <p>{text}</p>
+            <p>{text.length>0? text: 'Noting to preview'}</p>
         </div>
         </>
     )

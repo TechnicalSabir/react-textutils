@@ -27,22 +27,20 @@ function App() {
 
   }
 
-  const toggleMode = () => {
-    if (mode === 'light') {
-      setMode('dark');
-      document.body.classList.add('bg-secondary');
-      showAlert("Dark mode has been enabled", 'success');
-      document.title = 'Textutils - Dark Mode';
-      setInterval(() => {
-        document.title = 'Textutils - is Amazing';
-
-      }, 2000);
-    } else {
-      setMode('light');
-      document.body.classList.remove('bg-secondary');
-      showAlert("light mode has been enabled", 'success');
-      document.title = 'Textutils - Light Mode';
-    }
+  const toggleMode = (cls) => {
+    console.log(cls);
+    document.body.classList.add(`bg-${cls}`)
+    // if (mode === 'light') {
+    //   setMode('dark');
+    //   document.body.classList.add('bg-secondary');
+    //   showAlert("Dark mode has been enabled", 'success');
+    //   document.title = 'Textutils - Dark Mode';
+    
+    // } else {
+    //   setMode('light');
+    //   document.body.classList.remove('bg-secondary');
+    //   showAlert("light mode has been enabled", 'success');
+    // }
   }
   return (
     <>
@@ -51,7 +49,7 @@ function App() {
         <Alert alert={alert} />
         <Routes>
           <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Enter the text to analyze" />} />
-          <Route exact path="/about" element={<About />} />
+          <Route exact path="/about" element={<About mode={mode} />} />
         </Routes>
       </Router>
     </>
