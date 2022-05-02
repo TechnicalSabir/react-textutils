@@ -10,22 +10,27 @@ export default function TextForm(props) {
 
     const textUpper = () => {
         setText(text.toUpperCase());
+        props.showAlert('success', 'Text convert to uppercase.');
     }
 
     const textClear = () => {
         setText('');
+        props.showAlert('success', 'Text cleared!.');
     }
 
     const copyText = () => {
         navigator.clipboard.writeText(text)
+        props.showAlert('success', 'Copied to clipboard.');
     }
     const textLower = () => {
         setText(text.toLocaleLowerCase());
+        props.showAlert('success', 'Text convert to lowercase.');
     }
 
     const rmExtraSpaces = () => {
         const newText = text.split(/[ ]+/);
         setText(newText.join(' '));
+        props.showAlert('success', 'Remove extra space from text.');
     }
 
     return (
@@ -50,6 +55,12 @@ export default function TextForm(props) {
                     <li>{text.split(/[ ]+/).length}Words.</li>
                     <li>{text.length} Characters.</li>
                 </ul>
+                <hr />
+            </div>
+
+            <div className="container my-2">
+                <h6>Preview</h6>
+                <p>{text}</p>
             </div>
         </>
     )
