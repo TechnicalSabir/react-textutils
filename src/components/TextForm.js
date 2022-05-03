@@ -41,18 +41,18 @@ export default function TextForm(props) {
                     <textarea className={`form-control ${props.darkMode === 'light' ? 'bg-white text-dark' : 'bg-dark text-white'}`} id="myBox" rows="8" value={text} onChange={textInput}></textarea>
                 </div>
                 <div className='footer-end'>
-                    <button className="btn btn-primary mx-1" onClick={textUpper}>Upper Text</button>
-                    <button className="btn btn-info mx-1" onClick={textLower}>Lower Text</button>
-                    <button className="btn btn-danger mx-1" onClick={textClear}>Clear Text</button>
-                    <button className="btn btn-success mx-1" onClick={copyText}>Copy Text</button>
-                    <button className="btn btn-warning mx-1" onClick={rmExtraSpaces}>rm Extra Spaces</button>
+                    <button className="btn btn-primary mx-1 my-1" onClick={textUpper}>Upper Text</button>
+                    <button className="btn btn-info mx-1 my-1" onClick={textLower}>Lower Text</button>
+                    <button className="btn btn-danger mx-1 my-1" onClick={textClear}>Clear Text</button>
+                    <button className="btn btn-success mx-1 my-1" onClick={copyText}>Copy Text</button>
+                    <button className="btn btn-warning mx-1 my-1" onClick={rmExtraSpaces}>rm Extra Spaces</button>
                 </div>
                 <hr />
             </div>
             <div className='container my-4'>
                 <h6>Your tax summary</h6>
                 <ul>
-                    <li>{text.split(/[ ]+/).length}Words.</li>
+                    <li>{text.split(/\s+/).filter((element) => { return element.length !== 0 }).length}Words.</li>
                     <li>{text.length} Characters.</li>
                 </ul>
                 <hr />

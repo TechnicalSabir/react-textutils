@@ -41,7 +41,7 @@ function App() {
         <div style={{ marginTop: "4rem" }}>
           <Routes>
             <Route path="/" element={<Home showAlert={showAlert} darkMode={darkMode} />} />
-            {/* <Route path="/about" element={<About myStyle={myStyle}/>} /> */}
+            <Route path="/about" element={<About darkMode={darkMode}/>} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>

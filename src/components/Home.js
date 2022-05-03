@@ -1,6 +1,8 @@
 import TextForm from "./TextForm";
 
 function Home(props) {
+    document.title = "TextUtils - Home";
+
     return (
 
         <div className={`text-${props.darkMode === 'light' ? 'dark' : 'light' }`}>
